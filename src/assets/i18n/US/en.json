@@ -23,6 +23,8 @@
       "ck_editor": "CKEditor",
       "components": "Components",
       "tree_view": "Tree View",
+      "funcionarios": "Funcionários",
+      "cadastro": "Cadastro",
       "charts": "Charts",
       "chartist_js": "Chartist.Js",
       "ui_features": "UI Features",

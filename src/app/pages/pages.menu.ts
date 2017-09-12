@@ -59,6 +59,36 @@ export const PAGES_MENU = [
         ]
       },
       {
+        path: 'funcionario',
+        data: {
+          menu: {
+            title: 'general.menu.funcionarios',
+            icon: 'ion-gear-a',
+            selected: false,
+            expanded: false,
+            order: 250,
+          },
+        },
+        children: [
+          {
+            path: 'treeview',
+            data: {
+              menu: {
+                title: 'general.menu.tree_view',
+              },
+            },
+          },
+          {
+            path: 'cadastro',
+            data: {
+              menu: {
+                title: 'general.menu.cadastro',
+              },
+            },
+          },
+        ],
+      },
+      {
         path: 'charts',
         data: {
           menu: {
