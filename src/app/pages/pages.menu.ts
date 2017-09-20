@@ -89,6 +89,58 @@ export const PAGES_MENU = [
         ],
       },
       {
+        path: 'categoria',
+        data: {
+          menu: {
+            title: 'general.menu.categoria',
+            icon: 'ion-gear-a',
+            selected: false,
+            expanded: false,
+            order: 250,
+          },
+        },
+        children: [
+          {
+            path: 'cadastro',
+            data: {
+              menu: {
+                title: 'general.menu.cadastro',
+              },
+            },
+          },
+        ],
+      },
+      {
+        path: 'servico',
+        data: {
+          menu: {
+            title: 'general.menu.servico',
+            icon: 'ion-gear-a',
+            selected: false,
+            expanded: false,
+            order: 250,
+          },
+        },
+        children: [
+          {
+            path: 'treeview',
+            data: {
+              menu: {
+                title: 'general.menu.tree_view',
+              },
+            },
+          },
+          {
+            path: 'cadastro',
+            data: {
+              menu: {
+                title: 'general.menu.cadastro',
+              },
+            },
+          },
+        ],
+      },
+      {
         path: 'charts',
         data: {
           menu: {

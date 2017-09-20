@@ -23,6 +23,8 @@ export const routes: Routes = [
       { path: 'editors', loadChildren: './editors/editors.module#EditorsModule' },
       { path: 'components', loadChildren: './components/components.module#ComponentsModule' },
       { path: 'funcionario', loadChildren: './funcionario/funcionario.module#FuncionarioModule' },
+      { path: 'servico', loadChildren: './servico/servico.module#ServicoModule' },
+      { path: 'categoria', loadChildren: './categoria/categoria.module#CategoriaModule' },
       { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
       { path: 'ui', loadChildren: './ui/ui.module#UiModule' },
       { path: 'forms', loadChildren: './forms/forms.module#FormsModule' },

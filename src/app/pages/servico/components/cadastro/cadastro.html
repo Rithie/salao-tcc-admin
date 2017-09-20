@@ -1,0 +1,52 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <div class="row show-grid">
+    <div class="col-md-6">
+      <ba-card cardTitle="Cadastrar Serviço" baCardClass="with-scroll">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group" [ngClass]="{'has-error': (!nome.valid && nome.touched), 'has-success': (nome.valid && nome.touched)}">
+              <label for="inputFirstNome">Nome</label>
+              <input [formControl]="nome" type="text" class="form-control" id="inputnome" placeholder="Nome">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group" [ngClass]="{'has-error': (!valor.valid && valor.touched), 'has-success': (valor.valid && valor.touched)}">
+              <label for="inputValor">Valor</label>
+              <input [formControl]="valor" type="number" class="form-control" id="inputValor" placeholder="Valor">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group" [ngClass]="{'has-error': (!tempo.valid && tempo.touched), 'has-success': (tempo.valid && tempo.touched)}">
+              <label for="inputTempo">Tempo</label>
+              <input [formControl]="tempo" type="number" class="form-control" id="inputTempo" placeholder="Tempo">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group" [ngClass]="{'has-error': (!descricao.valid && descricao.touched), 'has-success': (descricao.valid && descricao.touched)}">
+              <label for="textareaDescricao">Descrição</label>
+              <textarea [formControl]="descricao" placeholder="Descrição" class="form-control" id="textareaDescricao"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="exampleSelect1">Example select</label>
+              <select class="form-control" id="exampleSelect1">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <button [disabled]="!form.valid" type="submit" (click)="vaPara()" class="btn btn-primary">Submit</button>
+      </ba-card>
+    </div>
+  </div>
+</form>
+login senha agenda
