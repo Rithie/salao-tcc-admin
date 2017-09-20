@@ -16,7 +16,7 @@ import { AppState, InternalStateType } from './app.service';
 import { GlobalState } from './global.state';
 import { NgaModule } from './theme/nga.module';
 import { PagesModule } from './pages/pages.module';
-
+import { ImageUploadModule } from 'angular2-image-upload';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -47,6 +47,7 @@ export type StoreType = {
     NgaModule.forRoot(),
     NgbModule.forRoot(),
     PagesModule,
+    ImageUploadModule.forRoot(),
     routing
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection

@@ -13,11 +13,13 @@
           <div class="row">
             <div class="col-md-12">
               <ba-card cardTitle="Avatar" baCardClass="with-scroll">
-                <ba-picture-uploader  [picture]="profile.picture" [defaultPicture]="defaultPicture" [uploaderOptions]="options"  (beforeUpload)="beforeUpload($event)"></ba-picture-uploader>
+                <image-upload url="https://httpbin.org/status/200" (onFileUploadFinish)="imageFinishedUploading($event)" (onRemove)="imageRemoved($event)"
+                  (isPending)="uploadStateChange($event)" [dropBoxMessage]="mensagem">
+                </image-upload>
               </ba-card>
             </div>          
             </div>
-        <button  type="submit" (click)="vaPara()" class="btn btn-primary">Submit</button>
+        <button  type="submit" (click)="onSubmit()" class="btn btn-primary">Submit</button>
       </ba-card>
     </div>
   </div>
