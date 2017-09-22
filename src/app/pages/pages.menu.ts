@@ -108,6 +108,14 @@ export const PAGES_MENU = [
               },
             },
           },
+          {
+            path: 'listar',
+            data: {
+              menu: {
+                title: 'general.menu.listar',
+              },
+            },
+          },
         ],
       },
       {

@@ -6,9 +6,16 @@ import { TreeModule } from 'ng2-tree';
 
 import { routing } from './categoria.routing';
 import { Categoria } from './categoria.component';
-import { Cadastro } from './components/cadastro/cadastro.component';
 import { ImageUploadModule } from 'angular2-image-upload';
+
+import { Cadastro } from './components/cadastro/cadastro.component';
 import { CadastroService } from './components/cadastro/cadastro.service';
+
+import { Listar } from './components/listar/listar.component';
+import { ListarService } from './components/listar/listar.service';
+
+import { Detalhe} from './components/detalhe/detalhe.component';
+import { DetalheService } from './components/detalhe/detalhe.service';
 @NgModule({
   imports: [
     CommonModule,
@@ -22,9 +29,13 @@ import { CadastroService } from './components/cadastro/cadastro.service';
   declarations: [
     Categoria,
     Cadastro,
+    Listar,
+    Detalhe,
   ],
   providers: [
-    CadastroService
+    CadastroService,
+    ListarService,
+    DetalheService,
   ]
 })
 export class CategoriaModule { }

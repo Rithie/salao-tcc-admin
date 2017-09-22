@@ -1,0 +1,42 @@
+<!-- <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <div class="row">
+    <div class="col-md-6">
+      <ba-card cardTitle="Cadastrar Serviço" baCardClass="with-scroll">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group" [ngClass]="{'has-error': (!nome.valid && nome.touched), 'has-success': (nome.valid && nome.touched)}">
+              <label for="inputFirstNome">Nome</label>
+              <input [formControl]="nome" type="text" class="form-control" id="inputnome" placeholder="Nome">
+            </div>
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <ba-card cardTitle="Avatar" baCardClass="with-scroll">
+                <image-upload url="https://httpbin.org/status/200" (onFileUploadFinish)="imageFinishedUploading($event)" (onRemove)="imageRemoved($event)"
+                  (isPending)="uploadStateChange($event)" [dropBoxMessage]="mensagem">
+                </image-upload>
+              </ba-card>
+            </div>          
+            </div>
+        <button  type="submit" (click)="onSubmit()" class="btn btn-primary">Submit</button>
+      </ba-card>
+    </div>
+  </div>
+</form>
+login senha agenda -->
+<div class="vertical-scroll">
+  <table class="table">
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Imagem</th>
+    </tr>
+    <tr *ngFor="let categoria of categorias" (click)="vaPara(categoria)">
+      <td>{{categoria.id}}</td>
+      <td>{{categoria.nome}}</td>
+      <td>{{categoria.imagem}}</td>
+    </tr>
+  </table>
+
+</div>

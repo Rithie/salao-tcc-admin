@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { EmailValidator, EqualPasswordsValidator } from '../../../../theme/validators';
 import { CadastroService } from './cadastro.service';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'cadastro',
@@ -17,8 +18,19 @@ export class Cadastro {
   mensagem: string = "OIE";
 
   imagem: string;
+  sub: any;
+  
+  ngOnInit() {
+    console.log(this.route.snapshot.params['id']);
+    //  this.route.params.subscribe(params => {
+    //    console.log(params['categoria']);
 
-  constructor(private fb : FormBuilder,private service : CadastroService) {
+    //   // In a real app: dispatch action to load the details here.
+    // });
+  }
+
+  constructor(private route: ActivatedRoute, private fb: FormBuilder, private service: CadastroService) {
+    
 
     
     this.form = fb.group({
