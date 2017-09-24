@@ -131,18 +131,18 @@ export const PAGES_MENU = [
         },
         children: [
           {
-            path: 'treeview',
-            data: {
-              menu: {
-                title: 'general.menu.tree_view',
-              },
-            },
-          },
-          {
             path: 'cadastro',
             data: {
               menu: {
                 title: 'general.menu.cadastro',
+              },
+            },
+          },
+          {
+            path: 'listar',
+            data: {
+              menu: {
+                title: 'general.menu.listar',
               },
             },
           },

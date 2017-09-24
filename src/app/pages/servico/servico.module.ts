@@ -7,7 +7,17 @@ import { TreeModule } from 'ng2-tree';
 import { routing } from './servico.routing';
 import { Servico } from './servico.component';
 import { TreeView } from './components/treeView/treeView.component';
+
 import { Cadastro } from './components/cadastro/cadastro.component';
+import { CadastroService } from './components/cadastro/cadastro.service';
+
+import { Listar } from './components/listar/listar.component';
+import { ListarService } from './components/listar/listar.service';
+
+import { Detalhe } from './components/detalhe/detalhe.component';
+import { DetalheService } from './components/detalhe/detalhe.service';
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -21,6 +31,14 @@ import { Cadastro } from './components/cadastro/cadastro.component';
     Servico,
     TreeView,
     Cadastro,
+    Listar,
+    Detalhe,
+
   ],
+  providers: [
+    CadastroService,
+    ListarService,
+    Detalhe
+  ]
 })
 export class ServicoModule { }

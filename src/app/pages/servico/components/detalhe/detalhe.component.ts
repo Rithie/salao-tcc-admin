@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
-import { TreeModel } from 'ng2-tree';
-import { NgUploaderOptions } from 'ngx-uploader';
+import { DetalheService } from './detalhe.service';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { EmailValidator, EqualPasswordsValidator } from '../../../../theme/validators';
-import { CadastroService } from './cadastro.service';
+import { NgUploaderOptions, UploadedFile } from 'ngx-uploader';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'cadastro',
-  templateUrl: './cadastro.html',
+  selector: 'detalhe',
+  templateUrl: './detalhe.html',
 })
 
-export class Cadastro {
-
+export class Detalhe {
   form: FormGroup;
 
   nome: AbstractControl;
@@ -31,10 +31,10 @@ export class Cadastro {
   categorias: Array<{}>;
 
   vaPara() {
-    
+
     this.test = this.servico;
   }
-  
+
   constructor(private service: CadastroService, fb: FormBuilder) {
     this.service.getCategorias().then((res: any) => {
       let resposta = JSON.parse(res._body);
@@ -72,6 +72,9 @@ export class Cadastro {
       console.log(JSON.stringify(data));
     }
   }
+
+
+
 
 
 }

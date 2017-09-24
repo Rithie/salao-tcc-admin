@@ -1,0 +1,17 @@
+<div class="vertical-scroll">
+  <table class="table">
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Valor</th>
+      <th>Tempo</th>      
+    </tr>
+    <tr *ngFor="let servico of servicos" (click)="vaPara(servico)">
+      <td>{{servico.id}}</td>
+      <td>{{servico.nome}}</td>
+      <td>{{servico.valor}}</td>
+      <td>{{servico.tempo}}</td>      
+    </tr>
+  </table>
+
+</div>
