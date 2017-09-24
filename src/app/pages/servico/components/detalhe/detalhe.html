@@ -1,7 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
   <div class="row show-grid">
     <div class="col-md-6">
-      <ba-card cardTitle="Cadastrar Serviço" baCardClass="with-scroll">
+      <ba-card cardTitle="Editar Serviço" baCardClass="with-scroll">
         <div class="row">
           <div class="col-sm-12">
             <div class="form-group" [ngClass]="{'has-error': (!nome.valid && nome.touched), 'has-success': (nome.valid && nome.touched)}">
@@ -40,7 +40,7 @@
             </div>
           </div>
         </div>
-        <button [disabled]="!form.valid" type="submit" (click)="vaPara()" class="btn btn-primary">Submit</button>
+        <button [disabled]="!form.valid" type="submit" (click)="vaPara()" class="btn btn-primary">Editar</button>
       </ba-card>
     </div>
   </div>

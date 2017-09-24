@@ -16,12 +16,11 @@ export class Listar {
       let resposta = JSON.parse(res._body);
       this.servicos = resposta;
       console.log(resposta);
-    }).catch((error) => console.log(error));
-    
+    }).catch((error) => console.log(error));    
   }
+  
   vaPara(servico) {
     console.log(servico.id);
-    
     this.router.navigateByUrl('/pages/servico/detalhe/' + servico.id);
   }
 

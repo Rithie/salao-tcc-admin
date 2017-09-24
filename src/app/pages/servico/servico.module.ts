@@ -38,7 +38,7 @@ import { DetalheService } from './components/detalhe/detalhe.service';
   providers: [
     CadastroService,
     ListarService,
-    Detalhe
+    DetalheService
   ]
 })
 export class ServicoModule { }

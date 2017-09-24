@@ -18,31 +18,44 @@ export class Detalhe {
   valor: AbstractControl;
   descricao: AbstractControl;
   tempo: AbstractControl;
+  categoria:any;
 
   submitted: boolean = false;
-  categoria: string;
+  
 
-  test: string;
   servico: string;
-  defaultPicture = 'assets/img/theme/no-photo.png';
-  profile: any = {
-    picture: 'assets/img/app/profile/Nasta.png',
-  };
+  id: any;
+
   categorias: Array<{}>;
+
+  
 
   vaPara() {
 
-    this.test = this.servico;
+    
   }
 
-  constructor(private service: CadastroService, fb: FormBuilder) {
+  constructor(private router: ActivatedRoute, private service: DetalheService, fb: FormBuilder) {
+    this.id = this.router.snapshot.params.id;
+    this.service.getServico(this.id).then((res: any) => {
+      let resposta = JSON.parse(res._body);
+      console.log(resposta);
+      this.form.controls['nome'].setValue(resposta.nome);
+      this.form.controls['tempo'].setValue(resposta.tempo);
+      this.form.controls['descricao'].setValue(resposta.descricao);
+      this.form.controls['valor'].setValue(resposta.valor);
+      this.categoria = resposta.categoriaId;
+    }).catch((error) => console.log(error));
+
     this.service.getCategorias().then((res: any) => {
       let resposta = JSON.parse(res._body);
       this.categorias = resposta;
-      this.categoria = resposta[0].id;
+      // this.categoria = resposta[0].id;
       console.log(resposta);
 
     }).catch((error) => console.log(error));
+
+    
 
     this.form = fb.group({
       'nome': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
@@ -66,10 +79,12 @@ export class Detalhe {
           "tempo": this.tempo.value,
           "descricao": this.descricao.value,
           "valor": this.valor.value,
-          "categoriumId": this.categoria
+          "categoriaId": this.categoria
         }
       }
-      console.log(JSON.stringify(data));
+      this.service.editar(data, this.id).then((res: any) => {
+        console.log(res);
+      }).catch((error) => console.log(error));
     }
   }
 
