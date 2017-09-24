@@ -1,0 +1,17 @@
+<div class="vertical-scroll">
+  <table class="table">
+    <tr>
+      <th>#</th>
+      <th>Nome</th>
+      <th>Valor</th>
+      <th>Servico</th>
+    </tr>
+    <tr *ngFor="let promocao of promocoes" (click)="vaPara(promocao)">
+      <td>{{promocao.id}}</td>
+      <td>{{promocao.nome}}</td>
+      <td>{{promocao.valorPromocional}}</td>
+      <td>{{promocao.servico.nome}}</td>
+    </tr>
+  </table>
+
+</div>

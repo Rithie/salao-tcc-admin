@@ -1,0 +1,50 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <div class="row">
+    <div class="col-md-6">
+      <ba-card cardTitle="Alterar Promoção" baCardClass="with-scroll">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group" [ngClass]="{'has-error': (!nome.valid && nome.touched), 'has-success': (nome.valid && nome.touched)}">
+              <label for="inputFirstNome">Nome</label>
+              <input [formControl]="nome" type="text" class="form-control" id="inputnome" placeholder="Nome">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group" [ngClass]="{'has-error': (!valor.valid && valor.touched), 'has-success': (valor.valid && valor.touched)}">
+              <label for="inputValor">Valor Promocional</label>
+              <input [formControl]="valor" type="number" class="form-control" id="inputValor" placeholder="Valor">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="exampleSelect1">Serviço</label>
+              <select [(ngModel)]="servico" [ngModelOptions]="{standalone: true}" class="form-control" id="exampleSelect1">
+                <option *ngFor="let servico of servicos"   value="{{servico.id}}">{{servico.nome}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group" [ngClass]="{'has-error': (!descricao.valid && descricao.touched), 'has-success': (descricao.valid && descricao.touched)}">
+              <label for="textareaDescricao">Descrição</label>
+              <textarea [formControl]="descricao" placeholder="Descrição" class="form-control" id="textareaDescricao"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <ba-card cardTitle="Imagem" baCardClass="with-scroll">
+              <ba-picture-uploader [picture]="profile.picture" [defaultPicture]="defaultPicture" [uploaderOptions]="uploaderOptions" (base64)="getImage($event)"></ba-picture-uploader>
+            </ba-card>
+          </div>
+        </div>
+        <button type="submit" (click)="onSubmit()" class="btn btn-primary">Alterar</button>
+      </ba-card>
+    </div>
+  </div>
+</form>

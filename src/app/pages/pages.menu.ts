@@ -149,6 +149,36 @@ export const PAGES_MENU = [
         ],
       },
       {
+        path: 'promocao',
+        data: {
+          menu: {
+            title: 'general.menu.promocao',
+            icon: 'ion-gear-a',
+            selected: false,
+            expanded: false,
+            order: 250,
+          },
+        },
+        children: [
+          {
+            path: 'cadastro',
+            data: {
+              menu: {
+                title: 'general.menu.cadastro',
+              },
+            },
+          },
+          {
+            path: 'listar',
+            data: {
+              menu: {
+                title: 'general.menu.listar',
+              },
+            },
+          },
+        ],
+      },
+      {
         path: 'charts',
         data: {
           menu: {
