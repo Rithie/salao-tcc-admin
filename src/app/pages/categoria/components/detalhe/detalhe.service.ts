@@ -20,5 +20,16 @@ export class DetalheService {
                 });
         });
     }
+    editar(data,id) {
+        return new Promise((resolve, reject) => {
+            this.http.put(this.url + "/" + id , JSON.stringify(data), { headers: this.contentHeader })
+                .map(res => res)
+                .subscribe(data => {
+                    resolve(data);
+                }, error => {
+                    reject(error);
+                });
+        });
+    }
 
  }

@@ -9,14 +9,16 @@ import { NgUploaderOptions } from 'ngx-uploader';
 export class BaPictureUploader {
 
   @Input() defaultPicture:string = '';
-  @Input() picture:string = '';
-
+  @Input() picture: string = '';
+  
   @Input() uploaderOptions:NgUploaderOptions = { url: '' };
-  @Input() canDelete:boolean = true;
+  @Input() canDelete: boolean = true;
+  
+  
 
   @Output() onUpload = new EventEmitter<any>();
   @Output() onUploadCompleted = new EventEmitter<any>();
-
+  @Output() base64 = new EventEmitter();
   @ViewChild('fileUpload') public _fileUpload:ElementRef;
 
   public uploadInProgress:boolean;
@@ -26,7 +28,7 @@ export class BaPictureUploader {
 
   beforeUpload(uploadingFile): void {
     let files = this._fileUpload.nativeElement.files;
-
+    console.log("dasdsada");
     if (files.length) {
       const file = files[0];
       this._changePicture(file);
@@ -39,25 +41,31 @@ export class BaPictureUploader {
     }
   }
 
+
+
   bringFileSelector():boolean {
     this.renderer.invokeElementMethod(this._fileUpload.nativeElement, 'click');
     return false;
   }
 
-  removePicture():boolean {
+  removePicture(): boolean {
+    this.base64.emit(false);
     this.picture = '';
     return false;
   }
 
-  _changePicture(file:File):void {
+  _changePicture(file: File): void {
     const reader = new FileReader();
-    reader.addEventListener('load', (event:Event) => {
+    reader.addEventListener('load', (event: Event) => {
+      // console.log(event)
+      this.base64.emit(event);
       this.picture = (<any> event.target).result;
     }, false);
     reader.readAsDataURL(file);
   }
 
-  _onUpload(data):void {
+  _onUpload(data): void {
+    
     if (data['done'] || data['abort'] || data['error']) {
       this._onUploadCompleted(data);
     } else {
@@ -65,7 +73,7 @@ export class BaPictureUploader {
     }
   }
 
-  _onUploadCompleted(data):void {
+  _onUploadCompleted(data): void {
     this.uploadInProgress = false;
     this.onUploadCompleted.emit(data);
   }

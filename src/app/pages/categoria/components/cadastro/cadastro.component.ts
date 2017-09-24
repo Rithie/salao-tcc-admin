@@ -3,6 +3,7 @@ import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/fo
 import { EmailValidator, EqualPasswordsValidator } from '../../../../theme/validators';
 import { CadastroService } from './cadastro.service';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { NgUploaderOptions, UploadedFile } from 'ngx-uploader';
 
 @Component({
   selector: 'cadastro',
@@ -19,14 +20,17 @@ export class Cadastro {
 
   imagem: string;
   sub: any;
+  public defaultPicture = 'assets/img/theme/no-photo.png';
+  public profile: any = {
+    picture: ''
+  };
+  public uploaderOptions: NgUploaderOptions = {
+    url: '',
+    calculateSpeed: true
+  };
   
   ngOnInit() {
-    console.log(this.route.snapshot.params['id']);
-    //  this.route.params.subscribe(params => {
-    //    console.log(params['categoria']);
-
-    //   // In a real app: dispatch action to load the details here.
-    // });
+    // console.log(this.route.snapshot.params['id']);
   }
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private service: CadastroService) {
@@ -40,6 +44,11 @@ export class Cadastro {
     });
 
     this.nome = this.form.controls['nome'];
+  }
+
+  getImage(data) {
+    // console.log(data.srcElement.result);
+    this.imagem = data.srcElement.result;
   }
 
   onSubmit(): void {
@@ -57,20 +66,4 @@ export class Cadastro {
       // console.log(values);
     }
   }
-
-  imageFinishedUploading(file: any) {
-    this.imagem = file.src;
-    // console.log(JSON.stringify(file.serverResponse));
-  }
-
-  imageRemoved(file: any) {
-    this.imagem = "";
-    // do some stuff with the removed file.
-  }
-
-  uploadStateChange(state: boolean) {
-    console.log(JSON.stringify(state));
-  }
-
-
 }

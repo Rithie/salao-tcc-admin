@@ -3,7 +3,8 @@ import { DetalheService } from './detalhe.service';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { EmailValidator, EqualPasswordsValidator } from '../../../../theme/validators';
-
+import { NgUploaderOptions, UploadedFile } from 'ngx-uploader';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'detalhe',
@@ -19,26 +20,25 @@ export class Detalhe {
 
   nome: AbstractControl;
 
-  mensagem: string = "OIE";
-
   imagem: string;
   sub: any;
+  public defaultPicture = 'assets/img/theme/no-photo.png';
+  public profile: any = {
+    picture: ''
+  };
+  public uploaderOptions: NgUploaderOptions = {
+    url: '',
+    calculateSpeed: true
+  };
 
-  // ngOnInit() {
-  //   this.id = this.router.snapshot.params.id;
-//    this.service.getCategoria(this.id).then((res: any) => {
-//   let resposta = JSON.parse(res._body);
-//   this.categoria = resposta;
-//   this.nome.setValue = this.categoria.nome;
-// }).catch((error) => console.log(error));
-//   }
 
-  constructor(private router: ActivatedRoute, private service: DetalheService, private fb: FormBuilder) {
+  constructor(private modalService: NgbModal,private router: ActivatedRoute, private service: DetalheService, private fb: FormBuilder) {
     this.id = this.router.snapshot.params.id;
     this.service.getCategoria(this.id).then((res: any) => {
       let resposta = JSON.parse(res._body);
       this.categoria = resposta;
       this.form.controls['nome'].setValue(this.categoria.nome);
+      this.profile.picture ='http://localhost:3000/imagem/categorias/'+ this.categoria.imagem;
         console.log(this.categoria);
     
     }).catch((error) => console.log(error));
@@ -52,6 +52,16 @@ export class Detalhe {
 
   }
 
+  getImage(data) {
+    // console.log(data.srcElement.result);
+    if (data) {
+      this.imagem = data.srcElement.result;      
+    } else {
+      this.imagem = "";
+    }
+  }
+
+
   onSubmit(): void {
     if (this.form.valid) {
       let data = {
@@ -60,27 +70,15 @@ export class Detalhe {
           "imagem": this.imagem
         }
       };
-      // this.service.cadastro(data).then((res: any) => {
-      //   console.log(res);
-      // }).catch((error) => console.log(error));
-      // your code goes here
-      // console.log(values);
+      console.log(data);
+      this.service.editar(data, this.id).then((res: any) => {
+        console.log(res);
+      }).catch((error) => console.log(error));
     }
+  
   }
+  
 
-  imageFinishedUploading(file: any) {
-    this.imagem = file.src;
-    // console.log(JSON.stringify(file.serverResponse));
-  }
-
-  imageRemoved(file: any) {
-    this.imagem = "";
-    // do some stuff with the removed file.
-  }
-
-  uploadStateChange(state: boolean) {
-    console.log(JSON.stringify(state));
-  }
 
 
 
