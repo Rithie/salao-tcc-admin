@@ -77,9 +77,5 @@ export class Detalhe {
     }
   
   }
-  
-
-
-
 
 }

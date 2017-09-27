@@ -63,7 +63,7 @@ export const PAGES_MENU = [
         data: {
           menu: {
             title: 'general.menu.funcionarios',
-            icon: 'ion-gear-a',
+            icon: 'ion-person-add',
             selected: false,
             expanded: false,
             order: 250,
@@ -123,7 +123,7 @@ export const PAGES_MENU = [
         data: {
           menu: {
             title: 'general.menu.servico',
-            icon: 'ion-gear-a',
+            icon: 'ion-pricetags',
             selected: false,
             expanded: false,
             order: 250,

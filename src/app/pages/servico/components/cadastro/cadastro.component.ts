@@ -69,7 +69,9 @@ export class Cadastro {
           "categoriumId": this.categoria
         }
       }
-      console.log(JSON.stringify(data));
+      this.service.cadastro(data).then((res: any) => {
+        console.log(res);
+      }).catch((error) => console.log(error));
     }
   }
 

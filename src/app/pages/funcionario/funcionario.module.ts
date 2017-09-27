@@ -8,6 +8,7 @@ import { routing } from './funcionario.routing';
 import { Funcionario } from './funcionario.component';
 import { TreeView } from './components/treeView/treeView.component';
 import { Cadastro } from './components/cadastro/cadastro.component';
+import { CadastroService } from './components/cadastro/cadastro.service';
 @NgModule({
   imports: [
     CommonModule,
@@ -22,5 +23,8 @@ import { Cadastro } from './components/cadastro/cadastro.component';
     TreeView,
     Cadastro,
   ],
+  providers: [
+    CadastroService,
+  ]
 })
 export class FuncionarioModule { }

@@ -4,16 +4,16 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 @Injectable()
 export class CadastroService {
     url: string;
-    urlCategoria: string;
-    constructor(private http: Http) {      
-        this.url = "http://localhost:3000/v1/app/servico";
-        this.urlCategoria = "http://localhost:3000/v1/app/categoria";
+    urlServicos: string;
+    constructor(private http: Http) {  
+        this.url = "http://localhost:3000/v1/app/funcionario";
+        this.urlServicos = "http://localhost:3000/v1/app/servico";
     }
     private contentHeader: Headers = new Headers({ "Content-Type": "application/json" });
 
-    getCategorias() {
+    cadastro(data) {
         return new Promise((resolve, reject) => {
-            this.http.get(this.urlCategoria)
+            this.http.post(this.url, JSON.stringify(data), { headers: this.contentHeader })
                 .map(res => res)
                 .subscribe(data => {
                     resolve(data);
@@ -22,10 +22,10 @@ export class CadastroService {
                 });
         });
     }
-
-    cadastro(data) {
+    
+    getServicos() {
         return new Promise((resolve, reject) => {
-            this.http.post(this.url, JSON.stringify(data), { headers: this.contentHeader })
+            this.http.get(this.urlServicos)
                 .map(res => res)
                 .subscribe(data => {
                     resolve(data);
