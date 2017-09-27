@@ -71,18 +71,18 @@ export const PAGES_MENU = [
         },
         children: [
           {
-            path: 'treeview',
-            data: {
-              menu: {
-                title: 'general.menu.tree_view',
-              },
-            },
-          },
-          {
             path: 'cadastro',
             data: {
               menu: {
                 title: 'general.menu.cadastro',
+              },
+            },
+          },
+          {
+            path: 'listar',
+            data: {
+              menu: {
+                title: 'general.menu.listar',
               },
             },
           },
@@ -328,14 +328,14 @@ export const PAGES_MENU = [
               }
             }
           },
-           {
-             path: 'hottables',
-             data: {
-               menu: {
-                 title: 'Hot Tables',
-               }
-             }
-           }
+          {
+            path: 'hottables',
+            data: {
+              menu: {
+                title: 'Hot Tables',
+              }
+            }
+          }
         ]
       },
       {
