@@ -13,69 +13,181 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 export class Detalhe {
 
-  categoria: any;
-  id: string;
-
   form: FormGroup;
 
   nome: AbstractControl;
-
+  cpf: AbstractControl;
+  rg: AbstractControl;
+  email: AbstractControl;
+  telefone: AbstractControl;
+  sexo: string;
   imagem: string;
-  sub: any;
-  public defaultPicture = 'assets/img/theme/no-photo.png';
-  public profile: any = {
-    picture: ''
+
+  servico: any;
+
+
+  horarioInicial: AbstractControl;
+  horarioFinal: AbstractControl;
+  servicos: Array<{}>;
+
+  defaultPicture = 'assets/img/theme/no-photo.png';
+  profile: any = {
+    picture: '',
   };
-  public uploaderOptions: NgUploaderOptions = {
+
+  uploaderOptions: NgUploaderOptions = {
+    // url: 'http://website.com/upload'
     url: '',
-    calculateSpeed: true
   };
 
+  fileUploaderOptions: NgUploaderOptions = {
+    // url: 'http://website.com/upload'
+    url: '',
+  };
 
-  constructor(private modalService: NgbModal,private router: ActivatedRoute, private service: DetalheService, private fb: FormBuilder) {
+  submitted: boolean = false;
+
+  horario = [
+    {
+      name: 'Segunda',
+      checked: false,
+      class: 'col-md-2',
+      atributo: 'segunda',
+    },
+    {
+      name: 'Terça',
+      checked: false,
+      class: 'col-md-2',
+      atributo: 'terca',
+    },
+    {
+      name: 'Quarta',
+      checked: false,
+      class: 'col-md-2',
+      atributo: 'quarta',
+    },
+    {
+      name: 'Quinta',
+      checked: false,
+      class: 'col-md-2',
+      atributo: 'quinta',
+    },
+    {
+      name: 'Sexta',
+      checked: false,
+      class: 'col-md-2',
+      atributo: 'sexta',
+    },
+    {
+      name: 'Sábado',
+      checked: false,
+      class: 'col-md-2',
+      atributo: 'sabado',
+    },
+    {
+      name: 'Domingo',
+      checked: false,
+      class: 'col-md-2',
+      atributo: 'domingo',
+    },
+  ];
+
+  checkboxPropertiesMapping = {
+    model: 'checked',
+    value: 'name',
+    label: 'name',
+    baCheckboxClass: 'class',
+  };
+
+  id: any;
+  funcionario: any;
+
+
+  constructor(private modalService: NgbModal, private router: ActivatedRoute, private service: DetalheService, private fb: FormBuilder) {
     this.id = this.router.snapshot.params.id;
-    this.service.getFuncinario(this.id).then((res: any) => {
+    this.service.getFuncionario(this.id).then((res: any) => {
       let resposta = JSON.parse(res._body);
-      this.categoria = resposta;
-      this.form.controls['nome'].setValue(this.categoria.nome);
-      this.profile.picture ='http://localhost:3000/imagem/categorias/'+ this.categoria.imagem;
-        console.log(this.categoria);
-    
+      console.log(resposta);
+      this.funcionario = resposta.funcionario;
+      this.form.controls['nome'].setValue(this.funcionario.nome);
+      this.form.controls['cpf'].setValue(this.funcionario.cpf);
+      this.form.controls['rg'].setValue(this.funcionario.rg);
+      this.form.controls['email'].setValue(this.funcionario.email);
+      this.form.controls['telefone'].setValue(this.funcionario.telefone);
+      this.form.controls['horarioInicial'].setValue(this.funcionario.horario.horarioInicial);
+      this.form.controls['horarioFinal'].setValue(this.funcionario.horario.horarioFinal);
+      this.sexo = this.funcionario.sexo;
+      this.servico = resposta.servicos;
+      this.profile.picture = 'http://localhost:3000/imagem/funcionarios/' + this.funcionario.imagem;
+
+
+      for (let horarioData in this.funcionario.horario) {
+        console.log(horarioData);
+        for (let hora of this.horario) {
+          if (hora.atributo == horarioData) {
+            hora.checked = this.funcionario.horario[horarioData];
+          }
+        }
+      }
+
+
     }).catch((error) => console.log(error));
-    
+
     this.form = fb.group({
       'nome': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+      'cpf': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(11)])],
+      'rg': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+      'email': ['', Validators.compose([Validators.required, EmailValidator.validate])],
+      'telefone': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(11)])],
+      'horarioInicial': ['', Validators.compose([Validators.required])],
+      'horarioFinal': ['', Validators.compose([Validators.required])],
     });
-    
-    this.nome = this.form.controls['nome'];
 
+    this.nome = this.form.controls['nome'];
+    this.cpf = this.form.controls['cpf'];
+    this.rg = this.form.controls['rg'];
+    this.email = this.form.controls['email'];
+    this.telefone = this.form.controls['telefone'];
+    this.horarioInicial = this.form.controls['horarioInicial'];
+    this.horarioFinal = this.form.controls['horarioFinal'];
+
+    this.service.getServicos().then((servicos: any) => {
+      let resultado = JSON.parse(servicos._body);
+      this.servicos = resultado;
+    }).catch((error) => console.log(error));
 
   }
 
   getImage(data) {
     // console.log(data.srcElement.result);
-    if (data) {
-      this.imagem = data.srcElement.result;      
-    } else {
-      this.imagem = "";
-    }
+    this.imagem = data.srcElement.result;
   }
 
 
   onSubmit(): void {
+    this.submitted = true;
     if (this.form.valid) {
       let data = {
-        "categoria": {
+        "funcionario": {
           "nome": this.nome.value,
-          "imagem": this.imagem
+          "cpf": this.cpf.value,
+          "rg": this.rg.value,
+          "email": this.email.value,
+          "telefone": this.telefone.value,
+          "sexo": this.sexo,
+          "imagem": this.imagem,
+          "servicos": this.servico,
+          "horarios": this.horario,
+          "horarioInicial": this.horarioInicial.value,
+          "horarioFinal": this.horarioFinal.value,
         }
       };
       console.log(data);
-      this.service.editar(data, this.id).then((res: any) => {
+      this.service.editar(data,this.id).then((res: any) => {
         console.log(res);
       }).catch((error) => console.log(error));
     }
-  
   }
+
 
 }

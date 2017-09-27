@@ -23,7 +23,7 @@ export class Listar {
   vaPara(funcionario) {
     console.log(funcionario.id);
 
-    this.router.navigateByUrl('/pages/funcionario/detalhe/' + funcionario.id);
+    this.router.navigateByUrl('/pages/funcionario/detalhe/' + funcionario.funcionario.id);
   }
 
 
