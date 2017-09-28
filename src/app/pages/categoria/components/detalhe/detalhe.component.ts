@@ -75,7 +75,6 @@ export class Detalhe {
         console.log(res);
       }).catch((error) => console.log(error));
     }
-  
   }
 
 }

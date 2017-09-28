@@ -70,7 +70,7 @@ export class Detalhe {
     this.valor = this.form.controls['valor'];
   }
 
-  onSubmit(values: Object): void {
+  editar(): void {
     this.submitted = true;
     if (this.form.valid) {
       let data = {

@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+<form [formGroup]="form">
   <div class="row show-grid">
     <div class="col-md-6">
       <ba-card cardTitle="Editar Serviço" baCardClass="with-scroll">
@@ -40,7 +40,7 @@
             </div>
           </div>
         </div>
-        <button [disabled]="!form.valid" type="submit" (click)="vaPara()" class="btn btn-primary">Editar</button>
+        <button [disabled]="!form.valid" type="submit" (click)="editar()" class="btn btn-primary">Editar</button>
       </ba-card>
     </div>
   </div>

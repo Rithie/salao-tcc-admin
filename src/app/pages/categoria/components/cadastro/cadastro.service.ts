@@ -9,6 +9,7 @@ export class CadastroService {
     }
     private contentHeader: Headers = new Headers({ "Content-Type": "application/json" });
 
+    
     cadastro(data) {
         return new Promise((resolve, reject) => {
             this.http.post(this.url, JSON.stringify(data), { headers: this.contentHeader })

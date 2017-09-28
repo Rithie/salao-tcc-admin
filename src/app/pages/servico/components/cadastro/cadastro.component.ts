@@ -30,10 +30,6 @@ export class Cadastro {
   };
   categorias: Array<{}>;
 
-  vaPara() {
-    
-    this.test = this.servico;
-  }
   
   constructor(private service: CadastroService, fb: FormBuilder) {
     this.service.getCategorias().then((res: any) => {
@@ -57,7 +53,7 @@ export class Cadastro {
     this.valor = this.form.controls['valor'];
   }
 
-  onSubmit(values: Object): void {
+  cadastrar(): void {
     this.submitted = true;
     if (this.form.valid) {
       let data = {
@@ -66,7 +62,7 @@ export class Cadastro {
           "tempo": this.tempo.value,
           "descricao": this.descricao.value,
           "valor": this.valor.value,
-          "categoriumId": this.categoria
+          "categoriaId": this.categoria
         }
       }
       this.service.cadastro(data).then((res: any) => {

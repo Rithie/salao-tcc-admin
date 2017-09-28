@@ -20,6 +20,7 @@ export class Cadastro {
 
   imagem: string;
   sub: any;
+
   public defaultPicture = 'assets/img/theme/no-photo.png';
   public profile: any = {
     picture: ''
@@ -28,19 +29,11 @@ export class Cadastro {
     url: '',
     calculateSpeed: true
   };
-  
-  ngOnInit() {
-    // console.log(this.route.snapshot.params['id']);
-  }
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private service: CadastroService) {
-    
 
-    
     this.form = fb.group({
       'nome': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
-      // 'tempo': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(11)])],
-      
     });
 
     this.nome = this.form.controls['nome'];
@@ -51,7 +44,7 @@ export class Cadastro {
     this.imagem = data.srcElement.result;
   }
 
-  onSubmit(): void {
+  cadastrar() {
     if (this.form.valid) {
       let data = {
         "categoria": {
@@ -59,11 +52,10 @@ export class Cadastro {
           "imagem": this.imagem
         }
       };
+      // console.log("entrouy aqui");
       this.service.cadastro(data).then((res: any) => {
         console.log(res);
       }).catch((error) => console.log(error));
-      // your code goes here
-      // console.log(values);
     }
   }
 }
