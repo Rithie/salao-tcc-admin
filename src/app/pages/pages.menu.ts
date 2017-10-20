@@ -6,7 +6,7 @@ export const PAGES_MENU = [
         path: 'dashboard',
         data: {
           menu: {
-            title: 'general.menu.dashboard',
+            title: 'Inicio',
             icon: 'ion-android-home',
             selected: false,
             expanded: false,
@@ -134,36 +134,36 @@ export const PAGES_MENU = [
           },
         ],
       },
-      {
-        path: '',
-        data: {
-          menu: {
-            title: 'general.menu.pages',
-            icon: 'ion-document',
-            selected: false,
-            expanded: false,
-            order: 650,
-          }
-        },
-        children: [
-          {
-            path: ['/login'],
-            data: {
-              menu: {
-                title: 'general.menu.login'
-              }
-            }
-          },
-          {
-            path: ['/register'],
-            data: {
-              menu: {
-                title: 'general.menu.register'
-              }
-            }
-          }
-        ]
-      },
+      // {
+      //   path: '',
+      //   data: {
+      //     menu: {
+      //       title: 'general.menu.pages',
+      //       icon: 'ion-document',
+      //       selected: false,
+      //       expanded: false,
+      //       order: 650,
+      //     }
+      //   },
+      //   children: [
+      //     {
+      //       path: ['/login'],
+      //       data: {
+      //         menu: {
+      //           title: 'general.menu.login'
+      //         }
+      //       }
+      //     },
+      //     {
+      //       path: ['/register'],
+      //       data: {
+      //         menu: {
+      //           title: 'general.menu.register'
+      //         }
+      //       }
+      //     }
+      //   ]
+      // },
     ]
   }
 ];

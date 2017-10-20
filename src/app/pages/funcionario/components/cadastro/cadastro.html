@@ -1,7 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
   <div class="row show-grid">
     <div class="col-md-6">
-      <ba-card cardTitle="Inline Form" baCardClass="with-scroll">
+      <ba-card cardTitle="Informações" baCardClass="with-scroll">
         <div class="row">
           <div class="col-sm-12">
             <div class="form-group" [ngClass]="{'has-error': (!nome.valid && nome.touched), 'has-success': (nome.valid && nome.touched)}">
@@ -59,17 +59,17 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <ba-card cardTitle="Picture" baCardClass="with-scroll">
+            <ba-card cardTitle="Avatar" baCardClass="with-scroll">
               <ba-picture-uploader [picture]="profile.picture" [defaultPicture]="defaultPicture" [uploaderOptions]="uploaderOptions" (base64)="getImage($event)"></ba-picture-uploader>
             </ba-card>
           </div>
         </div>
-        <button [disabled]="!form.valid" type="submit" (click)="onSubmit()" class="btn btn-primary">Submit</button>
+        <button [disabled]="!form.valid" type="submit" (click)="onSubmit()" class="btn btn-primary">Cadastrar</button>
       </ba-card>
     </div>
     <div class="col-md-6">
       <div class="col-md-12">
-        <ba-card cardTitle="Inline Form" baCardClass="with-scroll">
+        <ba-card cardTitle="Horário" baCardClass="with-scroll">
           <div class="input-demo checkbox-demo row">
             <ba-multi-checkbox [(ngModel)]="horario" [ngModelOptions]="{standalone: true}" [propertiesMapping]="checkboxPropertiesMapping"></ba-multi-checkbox>
           </div>
